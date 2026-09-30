@@ -1,0 +1,25 @@
+# InfinityFree/Apache deployment entry point.
+# The CodeIgniter document root is kept in /public, while this file allows
+# the complete project to remain one level above it on hosts without a custom
+# document-root setting.
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Never expose application source, configuration, database, or dependency files.
+    RewriteRule ^(?:app|build|database|tests|vendor|writable|\.git)(?:/|$) - [F,L,NC]
+
+    # Serve public static files from the nested public directory.
+    RewriteRule ^(?:favicon\.ico|robots\.txt|uploads/.*)$ public/$0 [L,NC]
+
+    # Do not allow direct browsing of the public directory itself.
+    RewriteRule ^public(?:/|$) - [F,L,NC]
+
+    # Send all application routes through CodeIgniter's front controller.
+    RewriteRule ^ public/index.php [L,QSA]
+</IfModule>
+
+<IfModule !mod_rewrite.c>
+    ErrorDocument 404 public/index.php
+</IfModule>
