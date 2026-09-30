@@ -26,6 +26,15 @@
         tbody tr:hover { background: #f8fbff; }
         .username { color: #1d4ed8; font-family: ui-monospace, monospace; font-weight: 700; }
         .empty-state { padding: 28px; text-align: center; color: var(--muted); }
+        .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+        .button { display: inline-block; padding: 9px 13px; border: 0; border-radius: 7px; background: var(--blue); color: white; text-decoration: none; font-weight: 700; cursor: pointer; }
+        .button.secondary { background: #e2e8f0; color: var(--ink); }
+        .form-grid { display: grid; gap: 18px; max-width: 620px; }
+        label { display: grid; gap: 7px; font-weight: 700; color: #334155; }
+        input { width: 100%; padding: 11px 12px; border: 1px solid #cbd5e1; border-radius: 7px; font: inherit; }
+        .errors { padding: 12px 16px; margin: 0 0 20px; border-radius: 8px; background: #fef2f2; color: #b91c1c; }
+        .notice { padding: 12px 16px; margin: 0 0 20px; border-radius: 8px; background: #ecfdf5; color: #047857; }
+        .avatar { width: 48px; height: 48px; object-fit: cover; border-radius: 50%; vertical-align: middle; }
         footer { text-align: center; padding: 0 16px 28px; color: var(--muted); font-size: .9rem; }
         @media (max-width: 600px) {
             header { padding: 18px 20px; }
@@ -42,6 +51,11 @@
         <a href="<?= site_url('about') ?>">About</a>
         <a href="<?= site_url('customers') ?>">Customers</a>
         <a href="<?= site_url('users') ?>">Users</a>
+        <a href="<?= site_url('customers/new') ?>">New Customer</a>
+        <a href="<?= site_url('users/new') ?>">New User</a>
     </nav>
 </header>
 <main>
+<?php if (session()->getFlashdata('message')): ?>
+    <div class="notice"><?= esc(session()->getFlashdata('message')) ?></div>
+<?php endif; ?>

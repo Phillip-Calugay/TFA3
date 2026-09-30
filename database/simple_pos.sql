@@ -1,5 +1,4 @@
-CREATE DATABASE IF NOT EXISTS `simple_pos` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `simple_pos`;
+
 
 DROP TABLE IF EXISTS `customers`;
 CREATE TABLE `customers` (
@@ -17,6 +16,7 @@ CREATE TABLE `users` (
   `id` INT AUTO_INCREMENT PRIMARY KEY,
   `username` VARCHAR(50) NOT NULL UNIQUE,
   `full_name` VARCHAR(100) NOT NULL,
+  `avatar` VARCHAR(255) NULL,
   `created_at` DATETIME NOT NULL
 );
 INSERT INTO `users` (`username`, `full_name`, `created_at`) VALUES
